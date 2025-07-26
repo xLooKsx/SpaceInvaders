@@ -48,8 +48,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 3
+  m_Mass: 0.0001
+  m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 452dd4377acba1b4b82ecf8869c1f740, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MovementSpeed: 10
+  MovementSpeed: 5
   bulletPrefab: {fileID: 4807758286760867413, guid: 7032a2c2f5d5c6f4081329e8cbe2f44c, type: 3}
 --- !u!1 &2521366590866478577
 GameObject:
