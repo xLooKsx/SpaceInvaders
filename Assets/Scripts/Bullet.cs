@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    
+
     public float MovementSpeed;
 
     public bool isDownToTop;
@@ -18,17 +18,30 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(isDownToTop){
+        if (isDownToTop)
+        {
             Debug.Log("Atirando para cima");
             myRigidbody2D.velocity = Vector2.up * MovementSpeed;
-        } else {
-            Debug.Log("Atirando para baixo");            
+        }
+        else
+        {
+            Debug.Log("Atirando para baixo");
             myRigidbody2D.velocity = Vector2.up * -MovementSpeed;
-        }                
+        }
     }
 
-    public void SetIsDownToTop(bool value) {
+    public void SetIsDownToTop(bool value)
+    {
         this.isDownToTop = value;
+    }
+
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player") || collision.CompareTag("Enemy"))
+        {
+            GameObject.Destroy(collision.gameObject);
+        }
     }
 
 }
