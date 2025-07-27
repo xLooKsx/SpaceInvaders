@@ -5,6 +5,7 @@ public class EnemyAtack : MonoBehaviour
 {
 
     public GameObject Bulletprefab;
+    public GameObject GameManager;
     public float shootSpawnDistance;
 
     private float shootCooldown;
@@ -36,6 +37,8 @@ public class EnemyAtack : MonoBehaviour
         Vector2 bulletPosition = new Vector2(this.transform.position.x, shootSpawnDistance);
         GameObject bullet = GameObject.Instantiate(Bulletprefab, bulletPosition, Quaternion.identity);
         bullet.GetComponent<Bullet>().SetIsDownToTop(false);
+        bullet.GetComponent<Bullet>().SetOriginIsPlayer(false);
+        bullet.GetComponent<Bullet>().SetGameManagerScript(GameManager.GetComponent<GameManager>());
     }
 
     private void CheckIfCanShoot()

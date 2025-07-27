@@ -47,5 +47,6 @@ public class Playermovement : MonoBehaviour
 
         GameObject bullet = GameObject.Instantiate(bulletPrefab, bulletPosition, Quaternion.identity);
         bullet.GetComponent<Bullet>().SetIsDownToTop(true);
+        bullet.GetComponent<Bullet>().SetOriginIsPlayer(true);
     }
 }

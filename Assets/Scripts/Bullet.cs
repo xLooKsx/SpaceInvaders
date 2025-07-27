@@ -8,7 +8,9 @@ public class Bullet : MonoBehaviour
     public float MovementSpeed;
 
     public bool isDownToTop;
+    private bool originIsPlayer;
     private Rigidbody2D myRigidbody2D;
+    private GameManager gameManagerScript;
 
     void Start()
     {
@@ -20,12 +22,10 @@ public class Bullet : MonoBehaviour
     {
         if (isDownToTop)
         {
-            Debug.Log("Atirando para cima");
             myRigidbody2D.velocity = Vector2.up * MovementSpeed;
         }
         else
         {
-            Debug.Log("Atirando para baixo");
             myRigidbody2D.velocity = Vector2.up * -MovementSpeed;
         }
     }
@@ -38,10 +38,29 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") || collision.CompareTag("Enemy"))
+        if (collision.CompareTag("Enemy") && originIsPlayer)
         {
             GameObject.Destroy(collision.gameObject);
         }
+        else if (collision.CompareTag("Player") && !originIsPlayer)
+        {
+            GameObject.Destroy(collision.gameObject);
+            gameManagerScript.GameOver();
+        }
+        else if (collision.CompareTag("Defenses"))
+        {
+            collision.gameObject.GetComponent<DefenseBehavior>().GotHit();
+        }
+    }
+
+    public void SetGameManagerScript(GameManager gameManager)
+    {
+        this.gameManagerScript = gameManager;
+    }
+
+    public void SetOriginIsPlayer(bool originIsPlayer)
+    {
+        this.originIsPlayer = originIsPlayer;
     }
 
 }
